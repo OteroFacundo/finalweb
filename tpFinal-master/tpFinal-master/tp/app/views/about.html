@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<h1>Sobre este proyecto</h1>
+<span>Este proyecto toma como base el tutorial de PHP Practitioner de Laracast y lo extiende para explorar de forma introductoria los conceptos de MVC</span>
+{% endblock %}

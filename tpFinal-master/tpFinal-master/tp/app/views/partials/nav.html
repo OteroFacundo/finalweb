@@ -1,0 +1,49 @@
+<div class="container">
+        <nav>
+            
+            <!--<div class="logo">
+                <img src="#">
+                <a href="/">QUINTA LA RENATA</a>
+            </div>-->
+            
+            <div class="nav-menu">
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                       
+                    {% if datos.userLogueado == "admin" %}
+                    <li><a href="/solicitudes">PRESUPUESTOS</a></li>
+                    {% else %}
+                    <li><a href="/presupuesto">PRESUPUESTO</a></li>
+                    {% endif %}
+                    <li><a href="/eventos">EVENTOS</a></li>
+                    {% if datos.userLogueado == "admin" %}
+                    <li><a href="/adminGaleria">GALERIA</a></li>
+                    {% else %}
+                    <li><a href="/galeria">GALERIA</a></li>
+                    {% endif %}
+
+                    <li><a href="/contact">CONTACTO</a></li>
+                </ul>
+            </div>
+            <div class="nav-login">
+             
+                    <ul>
+                        {% if datos.logueado != "true" %}
+                        <li><a href="/login">LOGIN</a></li>
+                    <li><a href="/register">REGISTER</a></li>
+                    {% endif %}
+     
+             
+            {% if datos.logueado == "true" %}
+             <li>
+           
+            <p class="user">{{ datos.userLogueado }} |<a href="/cerrarSesion">Cerrar sesion</a></p>
+        </li>
+            {% endif %}
+        </ul>
+            
+            </div>
+            </div>
+        </nav>
+</div>

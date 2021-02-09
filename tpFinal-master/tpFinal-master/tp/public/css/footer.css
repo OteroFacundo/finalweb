@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+footer {
+    margin-top: 0%;
+    width: 100%;
+    background: #dedede;
+    color: #3e3e3e;
+    
+}
+
+h1 {
+    font-family: Lato;
+}
+
+.container-footer-all {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 5px;
+}
+
+.container-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.foot-columna-content {
+    display: flex;
+    justify-content: center;
+}
+
+.foot-columna-icon {
+        margin-right: 50px;
+}
+
+.foot-columna-icon img {
+    height: 70px;
+    width: 70px;
+
+}
+
+.columna1 {
+    width: 33%;
+    max-width: 400px;
+    display: block;
+}
+
+.columna1 h1 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.columna1 p {
+    font-family: Lato;
+    font-size: 12px;
+    color: #9b9b9b;
+    margin-top: 5px;
+}
+
+.columna2 {
+    width: 33%;
+    max-width: 400px;
+}
+
+.columna2 h1 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.fila {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.fila img {
+    width: 25px;
+    height: 25px;
+}
+
+.fila label {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.fila a {
+    font-family: Lato;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: -7px;
+    color: #9b9b9b;
+}
+
+.columna3 {
+    width: 33%;
+    max-width: 400px;
+}
+
+.columna3 h1 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.fila2 {
+    justify-content: center;
+    margin-top: 5px;
+    display: flex;
+}
+
+.fila2 img {
+    width: 35px;
+    height: 25px;
+}
+
+.fila2 label {
+    font-family: Lato;
+    color: #9b9b9b;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 0px;
+    max-width: 150px;
+    
+}
+
+.container-footer {
+    width: 100%;
+    background: black;
+}
+
+.foot {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.author {
+    font-family: Lato;
+    color: #9b9b9b;
+    font-size: 12px;
+}
+
+.author a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.terminos {
+    font-family: Lato;
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.terminos a {
+    text-decoration: none;
+    color: white;
+}

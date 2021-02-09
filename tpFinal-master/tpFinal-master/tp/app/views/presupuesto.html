@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+
+{% block title %}Presupuesto{% endblock %}
+
+{% block header %}
+{% include 'partials/nav.html' with {datos:datos} only %}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+  <!--<link rel="stylesheet" href="/public/css/formularios.css">-->
+<link rel="stylesheet" href="/public/css/presupuesto.css">
+
+  <link rel="stylesheet" href="/public/css/calendario.css">
+  {% endblock %}
+
+{% block main %}
+<script>
+ var event = {
+                            'summary': 'Google I/O 2015',
+                            'location': '800 Howard St., San Francisco, CA 94103',
+                            'description': 'A chance to hear more about Google\'s developer products.',
+                            'start': {
+                              'dateTime': 'today',
+                              'timeZone': 'Argentina/Buenos Aires'
+                            },
+                            'end': {
+                              'dateTime': 'today',
+                              'timeZone': 'Argentina/Buenos Aires'
+                            },
+                            'recurrence': [
+                              'RRULE:FREQ=DAILY;COUNT=2'
+                            ],
+                            'attendees': [
+                              {'email': 'cacuotero92@gmail.com'},
+                              {'email': 'cacuotero92@gmail.com'}
+                            ],
+                            'reminders': {
+                              'useDefault': false,
+                              'overrides': [
+                                {'method': 'email', 'minutes': 24 * 60},
+                                {'method': 'popup', 'minutes': 10}
+                              ]
+                            }
+                          };
+                          
+                          var request = gapi.client.calendar.events.insert({
+                            'calendarId': 'cacuotero92@gmail.com',
+                            'resource': event
+                          });
+                          
+                          request.execute(function(event) {
+                            appendPre('Event created: ' + event.htmlLink);
+                          });
+</script>    
+<div class="page-tittle">
+        <div class="page-tittle-container">
+            <div class="page-tittle-text">
+                <h1>PRESUPUESTO</h1>
+            </div>
+
+            <div class="page-tittle-route">
+                <ul class="ul-route">
+                    <li><a href="/">HOME</a></li>
+                    <li>/ PRESUPUESTO</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!--{{ '<label for="fechaInicio">Fecha Inicio</label>'}}-->
+ 
+<div class="contenedor-padre">
+
+    <div class="contenedor-form">
+<form action="/presupuesto/validarPresupuesto" method="post" class="formulario">
+    <h2>Datos de contacto</h2>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" placeholder="Nombre">
+    <label for="apellido">Apellido</label>
+    <input type="text" placeholder="Apellido">
+    <label for="email">Email</label>
+    <input type="email" placeholder="Email">
+    <label for="telefono">Teléfono</label>
+    <input type="tel" placeholder="Teléfono">
+     <label for="fechaInicio">Fecha Inicio</label>
+       <input type="date" name="fechaInicio" id="fechaInicio" value="{{ datos.diaHoy }}" min="{{ datos.diaHoy }}" required><br>
+            
+
+          <label for="fechaFin">Fecha Fin</label>
+            <input type="date" name="fechaFin" id="fechaFin" min="{{ datos.diaHoy }}" required><br>
+
+
+
+    <!-- ......................................... -->
+
+    <label for="cantidadInvitados" class="label">Cantidad Invitados:</label>
+        <input type="number" name="cantidadInvitados" class="form" id="cantidadInvitados" min="0" required>
+
+    <label for="tipoEvento">Tipo de Evento</label>
+    <select name="nombreEvento" id="tipoEvento" class="form-control custom-select" required   >
+<option selected>Seleccione el tipo de Evento</option>
+            {% for evento in todosEventos %}
+<option value={{ evento.nombreEvento }}>{{ evento.nombreEvento }}</option>
+                                {% endfor %}
+                            </select><br>
+
+
+    <label for="mensaje" class="label" id="msj">Mensaje:</label>
+
+    <!--<input type="textarea" rows="5" cols="30"  name="mensaje" class="form" autofocus required>-->
+    <textarea name="mensaje" rows="10" cols="50" id="mensaje"></textarea>
+        <input type="submit" value="Pedir Presupuesto">
+    
+    </form>
+    </div>
+        <!--<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FArgentina%2FBuenos_Aires&amp;src=NjBncjhxMWtsdDI4MmJ1OWJjZHQ1NTc2YzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%237986CB" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <a target="_blank" href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MXFzdXMyMXA0cHBlOTJzYmloajcwNmphNWEgNjBncjhxMWtsdDI4MmJ1OWJjZHQ1NTc2YzhAZw&amp;tmsrc=60gr8q1klt282bu9bcdt5576c8%40group.calendar.google.com"><img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_es.gif"></a>
+    -->
+    <!--calendario-->
+
+    <div class="container-calendario">
+<h2>Fechas disponibles</h2>
+        <div id="botonesCalendario">
+            <button id="btnCreateEvents" cl(lass="btn btn-primary" onclick="insertar();">
+                Create Events</button>
+            <button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
+                Delete Events</button>
+        </div>
+        <div id="calendario">
+            <a target="_blank"  href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MG5hZ2RubWJtNDVna205c2k0MXVxaTkwcXEgNjBncjhxMWtsdDI4MmJ1OWJjZHQ1NTc2YzhAZw&amp;tmsrc=60gr8q1klt282bu9bcdt5576c8%40group.calendar.google.com"><img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_es.gif"></a>
+            <iframe src="https://calendar.google.com/calendar/embed?src=60gr8q1klt282bu9bcdt5576c8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+    <script type="text/javascript">
+        // date variables
+        var now = new Date();
+        today = now.toISOString();
+
+        var twoHoursLater = new Date(now.getTime() + (2 * 1000 * 60 * 60));
+        twoHoursLater = twoHoursLater.toISOString();
+
+        // Google api console clientID and apiKey 
+        var clientId = 'AIzaSyD7ax7r8aym46dZRiNRG1T7oAJ0EFa6VSw';
+        var apiKey = 'AIzsdg5CDEX3PvFyhfghOpnVf4eW_LmfeR80';
+
+        // enter the scope of current project (this API must be turned on in the Google console)
+        var scopes = 'https://www.googleapis.com/auth/calendar';
+
+        // OAuth2 functions
+        function handleClientLoad() {
+            gapi.client.setApiKey(apiKey);
+            window.setTimeout(checkAuth, 1);
+        }
+
+        function checkAuth() {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
+        }
+
+        // show/hide the 'authorize' button, depending on application state
+        function handleAuthResult(authResult) {
+            var authorizeButton = document.getElementById('authorize-button');
+            var eventButton = document.getElementById('btnCreateEvents');
+            var resultPanel = document.getElementById('result-panel');
+            var resultTitle = document.getElementById('result-title');
+
+            if (authResult && !authResult.error) {
+                authorizeButton.style.visibility = 'hidden'; 		// if authorized, hide button
+                resultPanel.className = resultPanel.className.replace(/(?:^|\s)panel-danger(?!\S)/g, '')	// remove red class
+                resultPanel.className += ' panel-success'; 			// add green class
+                resultTitle.innerHTML = 'Application Authorized'		// display 'authorized' text
+                eventButton.style.visibility = 'visible';
+                $("#txtEventDetails").attr("visibility", "visible");
+            } else {													// otherwise, show button
+                authorizeButton.style.visibility = 'visible';
+                $("#txtEventDetails").attr("visibility", "hidden");
+                eventButton.style.visibility = 'hidden';
+                resultPanel.className += ' panel-danger'; 			// make panel red
+                authorizeButton.onclick = handleAuthClick; 			// setup function to handle button click
+            }
+        }
+
+        // function triggered when user authorizes app
+        function handleAuthClick(event) {
+            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: false }, handleAuthResult);
+            return false;
+        }
+
+        function refreshICalendarframe() {
+            var iframe = document.getElementById('divifm')
+            iframe.innerHTML = iframe.innerHTML;
+        }
+        // setup event details
+        
+        // function load the calendar api and make the api call
+        function makeApiCall() {
+        
+            var eventResponse = document.getElementById('event-response');
+           
+            gapi.client.load('calendar', 'v3', function () {					// load the calendar api (version 3)
+                var request = gapi.client.calendar.events.insert
+                ({
+                    'calendarId': '60gr8q1klt282bu9bcdt5576c8@group.calendar.google.com', // calendar ID
+                    "resource": resource							// pass event details with api call
+                });
+                
+                // handle the response from our api call
+                request.execute(function (resp) {
+                    if (resp.status == 'confirmed') {
+                        eventResponse.innerHTML = "Event created successfully. View it <a href='" + resp.htmlLink + "'>online here</a>.";
+                        eventResponse.className += ' panel-success';
+                        refreshICalendarframe();
+                    } else {
+                        document.getElementById('event-response').innerHTML = "There was a problem. Reload page and try again.";
+                        eventResponse.className += ' panel-danger';
+                    }
+                });
+              
+               
+            
+            });
+        }
+        var resource = {
+            "summary": "My Event",
+			"start": {
+                "dateTime": today
+            },
+            "end": {
+                "dateTime": twoHoursLater
+            },
+            "description":"We are organizing events",
+            "location":"US",
+            "attendees":[
+			{
+					"email":"cacuotero92@gmail.com",
+					"displayName":"Shaveta",
+					"organizer":true,
+					"self":false,
+					"resource":false,
+					"optional":false,
+					"responseStatus":"needsAction",
+					"comment":"This is event first",
+					"additionalGuests":3
+					
+			},
+			{	
+				"email":"cacuotero92@gmail.com",
+					"displayName":"Chatak",
+					"organizer":true,
+					"self":false,
+					"resource":false,
+					"optional":false,
+					"responseStatus":"needsAction",
+					"comment":"This is office event",
+					"additionalGuests":3
+			}
+			],
+		};
+
+		// FUNCTION TO DELETE EVENT
+	   function deleteEvent() {
+		 gapi.client.load('calendar', 'v3', function() {  
+		   var request = gapi.client.calendar.events.delete({
+			 'calendarId': '60gr8q1klt282bu9bcdt5576c8@group.calendar.google.com',
+			 'eventId': 'Hdusrtsbs8'
+		   });
+		 request.execute(function(resp) {
+			if (resp.status == 'confirmed') {
+				alert("Event was successfully removed from the calendar!");
+			}
+			else{
+				alert('An error occurred, please try again later.')
+			}
+		 });
+		 });
+	   }
+     function insertar(){
+     window.alert("hola");
+     var event = {
+       'summary':'miEvento',
+  'location':'America/Argentina/Buenos_Aires',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2019-08-10T09:00:00-07:00',
+    'timeZone': 'America/Argentina/Buenos_Aires'
+      },
+  'end': {
+    'dateTime': '2019-08-12T17:00:00-07:00',
+    'timeZone': 'America/Argentina/Buenos_Aires'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=2'
+  ],
+  'attendees': [
+    {'email': 'cacuotero92@gmail.com'},
+    
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'email', 'minutes': 24 * 60},
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+console.log(event);
+var request = gapi.client.calendar.events.insert({
+  'calendarId': '60gr8q1klt282bu9bcdt5576c8@group.calendar.google.com',
+  'resource': event
+});
+
+request.execute(function(event) {
+  appendPre('Event created: ' + event.htmlLink);
+}); 
+     }
+		</script>
+<script src="https://apis.google.com/js/client.js?onload=handleClientLoad" type="text/javascript"></script>
+
+
+<!-- Navigation -->
+    
+    <!-- Page Content -->
+<!-- <div class="container">
+     <div id="botonesCalendario">
+                <button id="btnCreateEvents" cl(lass="btn btn-primary" onclick="insertar();">
+                 Create Events</button>
+             <button id="btnDeleteEvents" class="btn btn-primary" onclick="deleteEvent();">
+                 Delete Events</button>
+             </div>
+             <div id="calendario">
+               <a target="_blank"  href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MG5hZ2RubWJtNDVna205c2k0MXVxaTkwcXEgNjBncjhxMWtsdDI4MmJ1OWJjZHQ1NTc2YzhAZw&amp;tmsrc=60gr8q1klt282bu9bcdt5576c8%40group.calendar.google.com"><img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_es.gif"></a>
+               <iframe src="https://calendar.google.com/calendar/embed?src=60gr8q1klt282bu9bcdt5576c8%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+             </div>
+
+           </div>
+
+-->
+
+
+ {% endblock %}
+
+{% block footer %}
+ {{ include('partials/footer.html')}}
+{% endblock %}

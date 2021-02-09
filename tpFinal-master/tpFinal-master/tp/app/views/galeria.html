@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Galeria{% endblock %}
+
+{% block header %}
+{% include 'partials/nav.html' with {datos:datos} only %}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/public/css/galeriaImagenes.css">
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+    <div class="page-tittle">
+        <div class="page-tittle-container">
+            <div class="page-tittle-text">
+                <h1>GALERIA</h1>
+            </div>
+            
+            <div class="page-tittle-route">
+                <ul class="ul-route">
+                    <li><a href="/">HOME</a></li>
+                    <li>/ GALERIA</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+    <br>
+    
+    <div class="contenedor-galeria">
+      <!-- <img src="/app/views/imagenes/galeria/25.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/24.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/23.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/22.jpg" class="galeria__img">
+        <img src="/app/views/imagenes/galeria/21.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/20.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/19.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/18.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/17.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/16.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/15.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/14.jpg" class="galeria__img">
+        <img src="/app/views/imagenes/galeria/13.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/12.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/11.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/10.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/9.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/8.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/7.jpg" class="galeria__img">
+        <img src="/app/views/imagenes/galeria/6.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/5.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/4.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/3.jpg" class="galeria__img" >
+        <img src="/app/views/imagenes/galeria/2.jpg/" class="galeria__img" >
+      
+      <?php
+    $directory="img";
+    $dirint = dir($directory);
+    while (($archivo = $dirint->read()) !== false)
+    {
+        if (eregi("gif", $archivo) || eregi("jpg", $archivo) || eregi("png", $archivo)){
+            echo '<img src="'.$directory."/".$archivo.'">'."\n";
+        }
+    }
+    $dirint->close();
+?>  
+-->
+<!--{% set directory='img' %}-->
+
+
+<!--{% for i in 0..10 %} 
+<img src="app/views/imagenes/galeria/20.jpg"/>
+
+{% endfor %}-->
+<script>
+    let n = 3; //numero de imagenes
+    let imagenes = document.getElementById('fotos2') ;
+    for (let i = 1; i<= n; i++){
+    imagenes.innerHTML += '<img class="tfoto" src="app/views/imagenes/galeria/'+ i +'.jpg"><br>';
+    }
+    </script>   
+{% set i=0 %}
+<div class="contenedor-galeria" >
+        
+            {% for dato in imagenes %}
+{% set i=i+1 %}
+
+<img src={{ dato.imagen }} id={{i}} alt="Imagen de diagnostico" class="galeria__img"/>
+<!--<input type="submit" value="borrar" class="boton" id="boton" onclick="borrar( document.getElementById('{{i}}').id,document.getElementById('{{i}}').src)">-->
+
+{% endfor %}
+
+   </div>
+
+    </div>
+    
+    
+    
+   
+    
+{% endblock %}
+
+{% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

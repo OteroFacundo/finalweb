@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Lato|Saira+Semi+Condensed|Source+Sans+Pro|Roboto|Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+
+.formulario{
+    margin-top: 0px;
+    border-radius: 2px;
+
+
+}
+h2{
+    text-align: center;
+    color: #264653;
+}
+textarea{
+    margin-top: 20px;
+
+}
+label{
+   font-family: Lato;
+    color: #264653;
+    font-weight: bold;
+    font-size: 20px;
+margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+label, textarea,select{
+
+    display: inline-block;
+    vertical-align:middle;
+display: block;
+}
+textarea,input,select{
+    border-radius: 10px;
+    margin: 10px 0px 10px 20px;
+
+}
+input,select{
+    width: 400px;
+    height: 40px;
+
+}
+.contenedor-padre{
+    display: flex;
+    flex-flow: nowrap;
+justify-content: space-between;
+    background-color: #e76f51;
+}
+.container-calendario{
+    background-color: grey;
+}
+.container-calendario h2{
+    font-family: Lato;
+    text-align: center;
+}
+.contenedor-form{
+    width: 50%;
+}
+textarea{
+    width: 400px;
+}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+    <link rel="stylesheet" href="/public/css/mapa.css">
+    <link rel="stylesheet" href="/public/css/contacto.css">
+    {% endblock %}
+
+{% block main %}
+<script>
+function iniciarMap(){
+    var coord = {lat:-34.5474309 ,lng: -59.1338267};
+    var map = new google.maps.Map(document.getElementById('map'),{
+      zoom: 12,
+      center: coord
+    });
+    var marker = new google.maps.Marker({
+      position: coord,
+      map: map
+    });
+}</script>
+<div class="page-tittle">
+        <div class="page-tittle-container">
+            <div class="page-tittle-text">
+                <h1>CONTACTO</h1>
+            </div>
+            
+            <div class="page-tittle-route">
+                <ul class="ul-route">
+                    <li><a href="/">HOME</a></li>
+                    <li>/ CONTACTO</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+      
+         <div class="coordenadas">
+           <div id="titulo"> DONDE <br>
+        <u><strong>ESTAMOS</strong></u></div>
+ <div id="texto"> <p>Aca va toda la descripcion</p> <br>
+    <p> <strong>Coordenadas de GPS: </strong> 34°32'50.2"S 59°07'53.2"W</p>   </div>
+
+</div>
+ <img src="/app/views/imagenes/galeria/2.jpg/" class="img" >
+    <div id="map"></div>
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+    
+    
+    {% endblock %}
+
+    {% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Registro
+{% endblock %} 
+
+{% block header %}
+{{ include('partials/nav.html')  }}
+
+    
+    {% endblock %}
+
+{% block head %} 
+{{ parent() }}
+<!--   <link rel="stylesheet" href="/public/css/formularios.css">-->
+<link rel="stylesheet" href="/public/css/registro.css">
+{% endblock %} 
+
+{% block main %}
+<div class="page-tittle">
+    <div class="page-tittle-container">
+        <div class="page-tittle-text">
+            <h1>REGISTRO</h1>
+        </div>
+
+        <div class="page-tittle-route">
+            <ul class="ul-route">
+                <li><a href="/">HOME</a></li>
+                <li>/ REGISTRO</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    
+                       
+        <form action="/usuarios/validarUsuario" method="post" id="formAlta">
+
+                       
+        <label for="nombre" class="label">Nombre(nick):</label>
+        <input type="text" name="nombre" class="form" autofocus required>
+    <label for="password" class="label">Password:</label>
+      <input type="password" name="password" class="form" autofocus required>
+       <br>
+       <label for="nombrePersona" class="label">Nombre:</label>
+      
+         <input type="text" name="nombrePersona" class="form" autofocus required>
+    <label for="apellido" class="label">Apellido:</label>
+        <input type="text" name="apellido" class="form" autofocus required>
+         
+    <label for="email" class="label">Email:</label>
+        <input type="email" name="email" class="form" autofocus required>
+    <label for="telefono" class="label">Telefono:</label>
+        <input type="tel" name="telefono" class="form" autofocus required>
+        
+        <input type="submit" value="Registrar">
+    
+    </form>
+    
+    
+    
+{% endblock %}
+
+{% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

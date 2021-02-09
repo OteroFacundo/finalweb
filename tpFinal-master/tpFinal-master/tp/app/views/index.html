@@ -1,0 +1,138 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    Home
+{% endblock %} 
+
+{% block header %}
+
+{% include 'partials/nav.html' with {datos:datos} only %}
+
+    
+    {% endblock %}
+
+{% block head %} 
+{{ parent() }}
+    <link rel="stylesheet" href="/public/css/carrusel.css">
+{% endblock %} 
+
+{% block main %}
+<script src="/public/js/slides.js"></script>
+<div class="page-tittle">
+    <div class="page-tittle-container">
+        <div class="page-tittle-text">
+            <h1>HOME</h1>
+        </div>
+        
+        
+    </div>    
+</div>
+
+<!--
+ <div class="content-all">
+        <div class="content-carrousel">
+            <figure><img src="/app/views/imagenes/galeria/23.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/20.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/19.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/18.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/17.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/16.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/22.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/24.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/21.jpg"></figure>
+            <figure><img src="/app/views/imagenes/galeria/25.jpg"></figure>
+        </div>
+    </div><br>
+<br>
+<br>
+<br>-->
+<div class="slider">
+    <ul class="slides">
+        <li><img src="/app/views/imagenes/galeria/1.jpg" alt="imagen1" />
+        <li><img src="/app/views/imagenes/galeria/2.jpg" alt="imagen2" />
+        <li><img src="/app/views/imagenes/galeria/3.jpg" alt="imagen3" />
+        <li><img src="/app/views/imagenes/galeria/4.jpg" alt="imagen4" />
+        <li><img src="/app/views/imagenes/galeria/5.jpg" alt="imagen5" />
+        <li><img src="/app/views/imagenes/galeria/6.jpg" alt="imagen6" />
+    </ul>
+    <div class="buttons">
+        <div class="next">&#10095;</div>
+        <div class="prev">&#10094;</div>
+    </div>
+</div>
+<section class="descripcionLugar">
+
+    <p class="descripcionNegrita">La Renata Eventos es un predio de 2 hectáreas,<br> ubicado en Mercedes R. 5, <br>en la distintiva zona del Polo Argentino.</p>
+<p class="descripcion">Su amplio parque, añosa arboleda y lago con espacio zen, brindan un lugar que conjuga instalaciones de <br> categoría y máximo contacto con la naturaleza.<br>
+
+    Cuenta con dos salones, el principal es un salón moderno de 750 m2 y 450 m2 de galerías perimetrales con <br> capacidad desde 50 hasta 900 personas</p>
+
+
+
+    </section>
+<img src="/app/views/imagenes/galeria/2.jpg/" class="img" >
+<h1 class="instalacionesTitulo">Instalaciones</h1>
+<div class="containerpadre-instalaciones" >
+    
+        <div class="container-instalaciones-1">
+            <ul>
+                <li class="lista-instalaciones">Salón de 750 m2 divisible en cuatro sectores con capacidad de 50 <br> a 900 personas, con amplios ventanales con vista al parque.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >450 m2 de galerías techadas perimetrales.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones">Hall de acceso.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones">Ambiente climatizado.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones">Toilettes de damas y caballeros en el salón.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Cocina totalmente equipada.</li>
+                
+              </ul>
+        </div>
+        
+        <div class="container-instalaciones-2">
+            <ul>
+                <li class="lista-instalaciones">5 hectáreas de parque.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Espacio para ceremonias al aire libre.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Piscina de 20 x 9 m con amplio solárium de 90 m2 <br> con gazebos ambientados y barra de tragos.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Área de deportes: cancha de tenis, futbol y vóley.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Estacionamiento.</li>
+                <hr class="instalaciones-hr">
+                <li class="lista-instalaciones" >Parrilla.</li>
+              
+            </ul>
+   
+            </div>
+    
+</div>
+
+<div class="tipoEventos">
+   
+    <div class="container-eventos">
+        <h1>Eventos</h1>
+      
+        <ul>
+            <li class="lista-Eventos">Cumpleaños de 15</li>
+            
+            <li class="lista-Eventos" >Casamientos</li>
+            <li class="lista-Eventos" >Bautismos</li>
+            
+            <li class="lista-Eventos" >Civiles</li>
+            
+            <li class="lista-Eventos" >Aniversarios</li>
+           <li class="lista-Eventos" >Ceremonias</li>
+           <li class="lista-Eventos" >Cumpleaños</li>
+        </ul>
+        <a class="boton-a-galeria" href="galeria.html">Ver fotos</a>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

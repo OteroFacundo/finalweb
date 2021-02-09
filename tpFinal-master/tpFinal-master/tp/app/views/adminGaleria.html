@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Galeria{% endblock %}
+
+{% block header %}
+{% include 'partials/nav.html' with {datos:datos} only %}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/public/css/galeriaImagenes.css">
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<script>
+function borrar(id,ruta){
+   window.alert(id);
+    var imagen = document.getElementById(id);	
+	
+    if (!imagen){
+		alert("El elemento selecionado no existe");
+	} else {
+		padre = imagen.parentNode;
+		padre.removeChild(imagen);
+     var ver =document.createElement("input");
+     ver.setAttribute("value",ruta);
+        
+     //   var papa=document.getElementById("papa");
+       // papa.appendChild(ver);
+        var boton=document.getElementById("boton");
+    boton.style.display='none';
+        padreboton=boton.parentNode;
+        padreboton=removeChild(boton);
+}
+}
+</script>
+
+
+
+<script>var numeroFila=2;
+
+    /*
+     * Funcion que agrega un nueva fila a la tabla para subir imagenes, para poder subir mas de una.
+     * 
+     * @param idTabla Identificador de la tabla en la que se quiere añadir una nueva fila
+     * @param idBoton Identificador del boton que llama a esta funcion
+     */
+    
+    function agregarFila(idTabla,idBoton){
+        
+        // Limitamos el numero de filas a 10.
+        if (numeroFila <= 10){
+            // Inserta una nueva fila en la posicion numeroFila (la ultima).
+            nuevaFila = document.getElementById(idTabla).insertRow(numeroFila);
+            
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerHTML = '<td><div class="inputImagenModificado"><input class="inputImagenOculto" name="imagen[]"'+numeroFila+'" type="file"></div></td>';
+    
+            // Funcion para modificar el estilo de los inputs
+            mostrarInputFileModificado('imagen'+numeroFila);
+            
+            // Incrementa numeroFila
+            numeroFila ++;
+        } else {
+            // Inserta una nueva fila en la posicion numeroFila (la ultima).
+            nuevaFila = document.getElementById(idTabla).insertRow(numeroFila);
+    
+            // Inserta una nueva celda en la fila nueva, en la ultima posicion (por el -1). 
+            nuevaCelda = nuevaFila.insertCell(-1);
+            nuevaCelda.innerHTML = '<td>Solo se pueden subir 10 archivos a la vez.</td>';
+            
+            // Desactivamos el boton para agregar mas filas.
+            document.getElementById(idBoton).disabled = true;
+        }
+    }</script>    
+<div class="page-tittle" >
+        <div class="page-tittle-container">
+            <div class="page-tittle-text">
+                <h1>GALERIA</h1>
+            </div>
+            
+            <div class="page-tittle-route">
+                <ul class="ul-route">
+                    <li><a href="/">HOME</a></li>
+                    <li>/ GALERIA</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+    <br>
+    
+   
+    
+    
+<form action="/imagen/validar" method="POST" enctype="multipart/form-data">
+    <table id="formularioSubida" >
+        <thead>
+            <th>Elige los archivos que quieras subir</th>
+        </thead>
+        <tr>
+            <td>
+                <div class="inputImagenModificado">
+                    <input class="inputImagenOculto" name="imagen[]" type="file">
+                   
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td> 
+                <input type="button" id="botonAnnadir" onClick="agregarFila('formularioSubida','botonAnnadir')" value="Añadir archivo" style="width:138px;">        
+                <input type="submit" name="botonSubir" value="Subir"> 
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% set i=0 %}
+<div class="contenedor-galeria" >
+        <form action="/eliminar/imagen" method="POST" class="eliminar">
+            <input class="inputImagenOculto" name="imagenes[]" type="file">
+           <input type="submit" value="Borrar">
+        </form>   
+            {% for dato in imagenes %}
+{% set i=i+1 %}
+
+<img src={{ dato.imagen }} id={{i}} alt="Imagen de diagnostico" class="galeria__img"/>
+<!--<input type="submit" value="borrar" class="boton" id="boton" onclick="borrar( document.getElementById('{{i}}').id,document.getElementById('{{i}}').src)">-->
+
+{% endfor %}
+
+   </div>
+    
+{% endblock %}
+
+{% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

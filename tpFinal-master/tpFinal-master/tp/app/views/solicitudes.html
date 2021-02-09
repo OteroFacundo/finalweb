@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Presupuestos{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+    <div class="page-tittle">
+        <div class="page-tittle-container">
+            <div class="page-tittle-text">
+                <h1>PRESUPUESTOS</h1>
+            </div>
+            
+            <div class="page-tittle-route">
+                <ul class="ul-route">
+                    <li><a href="/">HOME</a></li>
+                    <li>/ PRESUPUESTO</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+    
+     <table id="miTabla">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0,'miTabla')">Nº</th>
+                <th onclick="sortTable(1,'miTabla')">  Mensaje   </th>
+                <th onclick="sortTable(2,'miTabla')">Fecha Inicio</th>
+                <th onclick="sortTable(3,'miTabla')">Fecha Fin</th>
+                <th onclick="sortTable(4,'miTabla')">N° Invitados</th>
+                <th onclick="sortTable(5,'miTabla')">Estado</th>
+                <th onclick="sortTable(6,'miTabla')">Usuario</th>
+                <th onclick="sortTable(7,'miTabla')">Evento</th>
+                <th onclick="sortTable(8,'miTabla')">Accion</th>
+                
+            </tr>
+        </thead>
+        {% for dato in todosPresupuestos %}
+        <tr>
+            <td>{{ dato.idPresupuesto }}</td>
+            <td>{{ dato.mensaje }}</td>
+            <td>{{ dato.fechaInicio }}</td>
+            <td>{{ dato.fechaFin }}</td>
+            <td>{{ dato.cantidadInvitados }}</td>
+            <td>{{ dato.estado }}</td>
+              <td>{{ dato.nombre }}</td>
+              <td>{{ dato.nombreEvento }}</td>
+               <td>
+               <a href="/presupuesto/modificar?idPresupuesto={{ dato.idPresupuesto }}">
+                    <input type="button" value="Reservar" >
+                </a>
+                </td>
+    {% endfor %}
+    </table>
+    
+{% endblock %}
+{% block footer %}
+    {{ include('partials/footer.html')}}
+{% endblock %}

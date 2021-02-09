@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Lato|Saira+Semi+Condensed|Source+Sans+Pro|Roboto|Titillium+Web&display=swap');
+
+.coordenadas{
+    height:220px ;
+width: 100%;
+}
+#texto{
+    margin-top: 5%;
+    float: left;
+   height: 200px; 
+   width: 50%;
+    margin-left:8%;
+    font-family: "Open Sans";
+    font-size: 15px;
+}
+#titulo{
+    float: left;
+    
+    height:200px ;
+    margin-top: 5%;
+    width: 20%;
+    margin-right: 0%;
+    margin-left: 8%;
+    font-family: "Open Sans";
+    font-size: 40px;
+}
+
+
+.img{ padding: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+    height:300px ;
+    width: 100%;
+    margin-bottom: 0%;
+
+}
