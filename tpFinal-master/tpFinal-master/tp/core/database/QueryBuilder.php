@@ -44,9 +44,10 @@ class QueryBuilder
      * @param  array  $parameters
      */
     public function insert($table, $parameters)
-    { 
+    {
+    echo "query";
         $parameters = $this->cleanParameterName($parameters);
-        $sql = sprintf(
+                $sql = sprintf(
             'insert into %s (%s) values (%s)',
             $table,
             implode(', ', array_keys($parameters)),
@@ -102,11 +103,15 @@ public function comparaUsuario($table, $usuario ){  $statement = $this->pdo->pre
  
 
 
-  public function getEventos($tableEvento){ 
+  public function getEventos($tableEventos){
+
+       echo "aca llega";
         $statement = $this->pdo->prepare(
-           "SELECT nombreEvento FROM $tableEvento"
+           "SELECT nombreEvento FROM {$tableEventos}"
     );
     $statement->execute();
+
+    echo "aca paso1111111";
     return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 public function updatePresupuesto($tabla,$estado,$id){

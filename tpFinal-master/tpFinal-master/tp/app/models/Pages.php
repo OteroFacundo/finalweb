@@ -11,10 +11,12 @@ protected $tableEventos='eventos';
 protected $tablePresupuesto='presupuesto';
 protected $tableImagenes='galeriaimagenes';
 public function getEventos(){
-    
+    echo "get eventos";
     $evento = $this->db->getEventos($this->tableEventos);
-    
+    var_dump($evento);
+
     $misEventos = json_decode(json_encode($evento), True);
+    echo $misEventos['nombreEvento'];
     return $misEventos;
 }
 public function getPresupuestos(){

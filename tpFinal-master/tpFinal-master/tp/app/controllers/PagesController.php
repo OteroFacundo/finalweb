@@ -41,8 +41,14 @@ class PagesController
     {
         $todosEventos=$this->model->getEventos();
          $datos["diaHoy"] = date("Y-m-d");
+       echo "aca si";
+        foreach($todosEventos as $todosEvento){
+        echo $todosEvento;
+        echo "entro";
+        echo "<br>";
+        }
          if(empty($_SESSION)){
-        
+
             return view('presupuesto',compact('todosEventos','datos'));
         } else {
          $datos["userLogueado"]=$_SESSION['user'];

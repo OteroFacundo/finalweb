@@ -30,7 +30,7 @@ $router->get('solicitudes', 'PagesController@vistaAdmin');
 
 //rutas presupuestos
 
-$router->post('presupuesto/validarPresupuesto','PresupuestoController@validarPresupuesto');
+$router->post('presupuesto/validarPresupuesto', 'PresupuestoController@validarPresupuesto' );
 $router->get('presupuesto/modificar', 'PresupuestoController@updateEstado');
 
 
